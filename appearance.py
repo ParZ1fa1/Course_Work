@@ -8,11 +8,11 @@ from board_data import *
 import bot
 
 pg.init()
-font = pg.font.SysFont('venv', 18, italic=True)
-
+pg.font.init()
 
 class Playboard:
     def __init__(self, parent_surface: pg.Surface):
+        self.font = pg.font.SysFont('ubuntu', 18, italic=True)
         self.__screen = parent_surface
         self.__table = board
         self.__count = CELL_COUNT
@@ -77,9 +77,10 @@ class Playboard:
         n_lines = pg.Surface((self.__count * self.__size, self.__size // 2), pg.SRCALPHA)
         n_rows = pg.Surface((self.__size // 2, self.__count * self.__size), pg.SRCALPHA)
         # корректировка клеток
+
         for i in range(0, self.__count):
-            letters = font.render(names[i], 1, WHITE)
-            number = font.render(str(self.__count - i), 1, WHITE)
+            letters = self.font.render(names[i], 1, WHITE)
+            number = self.font.render(str(self.__count - i), 1, WHITE)
             n_lines.blit(letters, (i * self.__size + (self.__size - letters.get_rect().width) // 2,
                                    (n_lines.get_height() - letters.get_rect().height) // 2))
             n_rows.blit(number, ((n_rows.get_width() - letters.get_rect().width) // 2,
