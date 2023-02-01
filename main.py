@@ -6,6 +6,80 @@ from appearance import *
 from extra import *
 
 
+#rusalph
+a = ord('а')
+rusLow = [chr(i) for i in range(a,a+6)] + [chr(a+33)] + [chr(i) for i in range(a+6,a+32)]
+a = ord('А')
+rusCapital = [chr(i) for i in range(a,a+6)] + [chr(a+33)] + [chr(i) for i in range(a+6,a+32)]
+#engalph
+a = ord('a')
+engLow = [chr(i) for i in range(a,a+26)]
+a = ord('A')
+engCapital = [chr(i) for i in range(a,a+26)]
+
+def encrypt(msg):
+    res = ''
+    for c in msg:
+        # ROT15 (Шифр Цезаря) - сдвиг символов на 15 позиций 
+        if c in rusLow:
+            idx = rusLow.index(c)
+            idx += 15
+            if idx >= len(rusLow):
+                idx = idx - len(rusLow)
+            res += rusLow[idx]
+        elif c in rusCapital:
+            idx = rusCapital.index(c)
+            idx += 15
+            if idx >= len(rusCapital):
+                idx = idx - len(rusCapital)
+            res += rusCapital[idx]
+        elif c in engLow:
+            idx = engLow.index(c)
+            idx += 15
+            if idx >= len(engLow):
+                idx = idx - len(engLow)
+            res += engLow[idx]
+        elif c in engCapital:
+            idx = engCapital.index(c)
+            idx += 15
+            if idx >= len(engCapital):
+                idx = idx - len(engCapital)
+            res += engCapital[idx]
+        else:
+            res += c
+    return res
+def decrypt(msg):
+    res = ''
+    for c in msg:
+        if c in rusLow:
+            idx = rusLow.index(c)
+            idx -= 15
+            if idx < 0:
+                idx += len(rusLow)
+            res += rusLow[idx]
+        elif c in rusCapital:
+            idx = rusCapital.index(c)
+            idx -= 15
+            if idx < 0:
+                idx += len(rusCapital)
+            res += rusCapital[idx]
+        elif c in engLow:
+            idx = engLow.index(c)
+            idx -= 15
+            if idx < 0:
+                idx += len(engLow)
+            res += engLow[idx]
+        elif c in engCapital:
+            idx = engCapital.index(c)
+            idx -= 15
+            if idx < 0:
+                idx += len(engCapital)
+            res += engCapital[idx]
+        else:
+            res += c
+    return res
+
+
 class Interface(QtWidgets.QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
