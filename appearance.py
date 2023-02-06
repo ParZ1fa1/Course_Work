@@ -1,8 +1,6 @@
 import pygame as pg
 import time
-
 from iteams import Checker1, Checker2
-from items import *
 from extra import *
 from board_data import *
 import bot
