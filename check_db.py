@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from db_handler import *
+from handler.db_handler import *
 
 
 class CheckThread(QtCore.QThread):
