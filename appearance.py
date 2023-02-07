@@ -6,11 +6,12 @@ from board_data import *
 import bot
 
 pg.init()
-pg.font.init()
+
 
 class Playboard:
     def __init__(self, parent_surface: pg.Surface):
-        self.font = pg.font.SysFont('ubuntu', 18, italic=True)
+        pg.font.init()
+        self.font = pg.font.SysFont('arial', 18, italic=True)
         self.__screen = parent_surface
         self.__table = board
         self.__count = CELL_COUNT
@@ -252,7 +253,7 @@ class Playboard:
         if 'arial' in pg.font.get_fonts():
             use_font = 'arial'
         else:
-            use_font = 'ubuntu'
+            use_font = 'arial'
 
         font = pg.font.SysFont(use_font, 72)
         follow = font.render(text, 1, colour)
