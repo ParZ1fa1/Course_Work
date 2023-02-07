@@ -2,7 +2,7 @@ import sqlite3
 
 
 def login(login, passw, signal):
-    con = sqlite3.connect('handler/users')
+    con = sqlite3.connect('users.txt')
     cur = con.cursor()
 
     # Проверяем есть ли такой пользователь
@@ -19,7 +19,7 @@ def login(login, passw, signal):
 
 
 def register(login, passw, signal):
-    con = sqlite3.connect('handler/users')
+    con = sqlite3.connect('users.txt')
     cur = con.cursor()
 
     cur.execute(f'SELECT * FROM users WHERE name="{login}";')
